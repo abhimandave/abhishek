@@ -1,0 +1,131 @@
+#include<iostream>
+#include<graphics.h>
+using namespace std;
+class DDA
+{
+public:
+		float X1,Y1,X2,Y2,DX,DY,X,Y,X_INC,Y_INC;
+		int X0,Y0,STEPS,x1,x2,y1,y2,r,xc,yc;
+		int gd=DETECT,gm;
+	DDA()
+	{int xc;int yc;int r;
+		X0=0;
+		Y0=0;
+	}
+	void drawLINE(int x2,int y2,int x1,int y1);
+	void bresenc(int x1,int y1,int r)  ;
+
+};
+
+void DDA:: bresenc(int x1,int y1,int r)
+ {
+    int d,x,y;
+    d=3-2*r;
+    x=0;
+    y=r;
+
+    while(x<=y)
+   {
+     putpixel(x1+x,y1-y,WHITE);
+     putpixel(x1+y,y1-(-x),WHITE);
+     putpixel(x1+x,y1-(-y),WHITE);
+     putpixel(x1+(-y),y1-(-x),WHITE);
+     putpixel(x1+(-y),y1-x,WHITE);
+     putpixel(x1+(-x),y1-y,WHITE);
+     putpixel(x1+(-x),y1-(-y),WHITE);
+     putpixel(x1+y,y1-x,WHITE);
+     if(d<0)
+     {
+       d=d+4*x+6;
+       x=x+1;
+     }
+
+   if(d>0)
+   {
+     d=d+4*(x-y)+10;
+     x=x+1;
+     y=y-1;
+
+   }
+
+       delay(100);
+  }
+ }
+
+
+
+void DDA::drawLINE(int x2,int y2,int x1,int y1)
+{
+	X2=x2;Y2=y2;X1=x1;Y1=y1;
+	X0=getmaxx()/2;Y0=getmaxy()/2;
+	putpixel(X0,Y0,WHITE);
+	DX=X2-X1;
+	DY=Y2-Y1;
+
+	if(DX<0)
+		DX=-DX;
+	if(DY<0)
+		DY=-DY;
+	if(DX>=DY)
+		STEPS=DX;
+	else
+		STEPS=DY;
+
+
+	DX=X2-X1;
+	DY=Y2-Y1;
+
+	X_INC=(float)DX/STEPS;
+	Y_INC=(float)DY/STEPS;
+	X=X1;
+	Y=Y1;
+	while(STEPS)
+	{
+		putpixel(X0+X+0.5,Y0+Y+0.5,WHITE);
+		X+=X_INC;
+		Y+=Y_INC;
+		STEPS--;
+	}
+
+}
+
+
+int main()
+{
+	cout<<"DRAWING SHAPE USING DDA LINE DRAWING ALGORITHM AND BRESENHAM CIRCLE DRAWING ALGORITHM"<<endl;
+	DDA L;
+	//L.bresenc(x1,y1,r);
+	int x1,y1,r;
+
+   cout<<"\n Enter x1 :";
+   cin>>x1;
+   cout<<"\n Enter y1 :";
+   cin>>y1;
+   cout<<"\n Enter radius :";
+   cin>>r;
+   int gd=DETECT,gm;
+	initgraph(&gd,&gm,NULL);
+      L.bresenc(getmaxx()/2,getmaxy()/2,r);
+
+
+
+
+	L.drawLINE(200,100,200,-100);
+	L.drawLINE(200,-100,-200,-100);
+	L.drawLINE(-200,-100,-200,100);
+	L.drawLINE(-200,100,200,100);
+
+	L.drawLINE(200,0,0,100);
+	L.drawLINE(200,0,0,-100);
+	L.drawLINE(-200,0,0,100);
+	L.drawLINE(-200,0,0,-100);
+	delay(10000);
+	closegraph();
+
+
+
+
+
+	cout<<endl<<"LINE DRAWN SUCCESSFULLY"<<endl;
+	return 0;
+}
