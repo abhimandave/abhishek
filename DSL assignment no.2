@@ -1,0 +1,123 @@
+def avg(marks):
+    sum=0
+    count=0
+    for i in range(len(marks)):
+        if marks[i]!=-1:
+            sum+=marks[i]
+            count+=1
+    avg=sum/count
+    print("Total marks: ",sum)
+    print("average marks: ",avg)
+
+def maximum(marks):
+    for i in range(len(marks)):
+        if marks[i]!=-1:
+            Max=marks[0]
+            break
+    for i in range(1,len(marks)):
+        if marks[i]>Max:
+            Max=marks[i]
+    return (Max)
+def minimum(marks):
+    for i in range(len(marks)):
+        if marks[i]!=-1:
+            Min=marks[0]
+            break
+    for i in range(1,len(marks)):
+        if marks[i]<Min:
+            Min=marks[i]
+    return (Min)
+
+def absent(marks):
+    count = 0
+    for i in range(len(marks)):
+        if isinstance(marks[i], int):
+            continue
+        else:
+            if marks[i] == "A" or marks[i] == "a":
+                count = count + 1
+
+    return count
+
+def frequency(marks):
+    i=0
+    Max=0
+    print("Marks   |   frequency")
+    for j in marks:
+        if (marks.index(j)==i):
+            print(j," | ",marks.count(j))
+            if marks.count(j)>Max:
+                Max=marks.count(j)
+                mark=j
+
+        i=i+1
+
+    return (mark,Max)
+
+marksinFDS=[]
+numberofstudents=int(input("Enter total number of students : "))
+print("Enter marks of students (enter 'A' or 'a' for absent student):")
+for i in range(numberofstudents):
+    marks=input("Enter marks of student "+str(i+1)+" : ")
+    marksinFDS.append(marks)
+
+flag=1
+while flag==1:
+    print("\n\n--------------------MENU--------------------\n")
+    print("1. Total and Average Marks of the Class")
+    print("2. Highest and Lowest Marks in the Class")
+    print("3. Number of Students absent for the test")
+    print("4. Marks with Highest Frequency")
+    print("5. Exit\n")
+    ch=int(input("Enter your Choice (from 1 to 5) :"))
+
+    if ch==1:
+        avg(marksinFDS)
+        a = input("Do you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Bye")
+
+    elif ch==2:
+        print("Highest Score in Class : ", maximum(marksinFDS))
+        print("Lowest Score in Class : ", minimum(marksinFDS))
+        a = input("Do you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Bye")
+
+    elif ch==3:
+        print("Number of Students absent in the test : ", absent(marksinFDS))
+        a = input("Do you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Bye")
+
+    elif ch==4:
+        mark,fr = frequency(marksinFDS)
+        print("Highest frequency is of marks {0} that is {1} ".format(mark,fr))
+        a = input("Do you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Bye")
+
+    elif ch==5:
+        flag=0
+        print("Bye")
+
+    else:
+        print("!!Wrong Choice!! ")
+        a=input("Do you want to continue (yes/no) :")
+        if a=="yes":
+            flag=1
+        else:
+            flag=0
+            print("Bye")
