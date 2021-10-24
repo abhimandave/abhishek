@@ -1,0 +1,53 @@
+/* ABHISHEK MANDAVE
+IMPLEMENT A CLASS COMPLEX WHICH REPRESENTS A COMPLEX NO. DATA TYPE
+MESCOE*/
+
+#include<iostream>
+using namespace std;
+class complex
+{
+public:
+      int real;
+      int img;
+      void print()
+      {
+
+            cout<<real<<" + "<<img<<"i"<<endl;
+
+      }
+      
+      complex operator + (complex c)
+      {
+            complex t;
+            t.real=real+c.real;
+            t.img=img+c.img;
+            return t;
+      }
+      complex operator * (complex c)
+      {
+            complex temp;
+            temp.real=real * c.real;
+            temp.img=img * c.img;
+            return temp;
+      }
+};
+
+int main()
+{
+      complex c1,c2,c3,c4;
+      cout<<"\nEnter first complex number\n";
+           cout<<"\nEnter real and imaginary:\t";
+            cin>>c1.real;
+            cin>>c1.img;
+
+            cout<<"\nEnter second complex number\n";
+           cout<<"\nEnter real and imaginary:\t";
+            cin>>c2.real;
+            cin>>c2.img;
+       cout<<"******Addition operator*******"<<endl;
+      c3=c1+c2;
+      c3.print();
+      cout<<"\n********Multiplication operator********"<<endl;
+      c4=c1*c2;
+      c4.print();
+}
