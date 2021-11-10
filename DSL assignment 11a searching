@@ -1,0 +1,53 @@
+def linear(arr,x):
+    for i in range(len(arr)):
+        if arr[i]==x:
+            return i
+        return -1
+def senti(arr,x):
+    l=len(arr)
+    arr.append(x)
+    i=0
+    while(arr[i]!=x):
+        i=i+1
+    if(i!=l):
+        return i
+    else:
+        return -1
+
+n=int(input("enter number of students: "))
+array=[]
+i=0
+for i in range(n):
+    print("\nEnter roll no. of students",i+1,": ")
+    item=int(input())
+    array.append(item)
+
+print("The roll number are: ",array)
+while True:
+    print("-----MAIN MENU-----")
+    print("\n 1.Linear search")
+    print("\n 2.sentinel search")
+    print("\n Enter your choice: ")
+    choice=int(input())
+    if (choice==1):
+        print("\nEnter the roll number of student to search: ")
+        key=int(input())
+        location=linear(array,key)
+        if (location!=-1):
+            print("Yes, student attended training program!!")
+
+        else:
+            print("No, student not attended training program!!")
+
+    elif(choice==2):
+        print("\nEnter the roll number of student to search: ")
+        key = int(input())
+        location = senti(array, key)
+        if (location != -1):
+            print("Yes, student attended training program!!")
+
+        else:
+            print("No, student not attended training program!!")
+    else:
+        print("exit")
+        break
