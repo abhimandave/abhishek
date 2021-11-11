@@ -1,0 +1,99 @@
+
+R = int(input("Enter the number of rows:"))
+C = int(input("Enter the number of columns:"))
+
+
+matrix= []
+
+print("Enter the entries row wise:")
+
+
+for i in range(R):
+    a =[]
+    for j in range(C):
+        a.append(int(input()))
+    matrix.append(a)
+
+
+for i in range(R):
+    for j in range(C):
+        print(matrix[i][j], end = " ")
+    print()
+
+matrix2=[]
+print("\nEnter the entries row wise for second matrix:")
+for i in range(R):
+    a =[]
+    for j in range(C):
+        a.append(int(input()))
+    matrix2.append(a)
+
+
+for i in range(R):
+    for j in range(C):
+        print(matrix2[i][j], end = " ")
+    print()
+
+result = [[0,0,0],
+        [0,0,0],
+        [0,0,0]]
+
+def add():
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            result[i][j] = matrix[i][j] + matrix2[i][j]
+
+    for r in result:
+        print(r)
+
+def multi():
+    for i in range(len(matrix)):
+        for j in range(len(matrix2[0])):
+            for k in range(len(matrix2)):
+             result[i][j] += matrix[i][k] * matrix2[k][j]
+
+    for r in result:
+        print(r)
+
+
+def sub():
+    for i in range(len(matrix)):
+        # iterate through columns
+        for j in range(len(matrix[0])):
+            result[i][j] = matrix[i][j] - matrix2[i][j]
+
+    for r in result:
+        print(r)
+
+def trans():
+    for i in range(len(matrix)):
+        # iterate through columns
+        for j in range(len(matrix[0])):
+            result[j][i] = matrix[i][j]
+
+    for r in result:
+        print(r)
+
+while True:
+    print("\n****** main menu ******")
+    print("1. ADDITION OF A MATRIX ")
+    print("2. MULTIPLICATION OF A MATRIX ")
+    print("3. SUBTRACTION OF MATRIX")
+    print("4. TRANSPOSE OF A MATRIX")
+    ch=int(input("Enter your choice: "))
+
+    if ch==1:
+        print(" \nADDITION OF GIVEN TWO MATRICES :")
+        add()
+    elif ch==2:
+        print("\n multiplication of given matrices :")
+        multi()
+    elif ch==3:
+        print(" \nSUBTRACTION OF GIVEN TWO MATRICES :")
+        sub()
+    elif ch==4:
+        print(" \nTRANSPOSE OF GIVEN TWO MATRICES :")
+        trans()
+    else:
+        print("wrong choice")
+        break
